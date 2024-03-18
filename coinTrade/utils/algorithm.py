@@ -1,18 +1,24 @@
+# import numpy as np
+# import talib
+from talib.abstract import *
+
 import numpy as np
-import talib
-from talib.abstract import *
+# from ta.momentum import rsi
+from talib import abstract
 
-close = np.random.random(100)
-output = talib.SMA(close) # 默认是SMA30
-output = talib.SMA(close, timeperiod=5) # SMA5
+# 创建一个二维数组
+data = np.array([[1, 2, 3, 4],
+                 [5, 6, 7, 8],
+                 [5, 6, 7, 8],
+                 [5, 6, 7, 8],
+                 [5, 6, 7, 8], 
+                 [9, 10, 11, 12]])
 
-inputs = {
-    'open': np.random.random(100),
-    'high': np.random.random(100),
-    'low': np.random.random(100),
-    'close': np.random.random(100),
-    'volume': np.random.random(100)
-}
-from talib.abstract import *
-output = talib.SMA(inputs, timeperiod=25) # 默认对close价格计算
-output = talib.SMA(inputs, timeperiod=25, price='open') # 对open价格计算
+# 设置时间窗口大小，对应于RSI指标的时间窗口
+timeperiod = 3
+
+# 使用TA-Lib的abstract函数计算RSI指标
+rsi_result = abstract.RSI(data, timeperiod=timeperiod)
+
+print(rsi_result)
+
