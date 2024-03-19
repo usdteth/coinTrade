@@ -30,3 +30,7 @@ def get_candles(instId,bar, after: str = '', before: str = '', limit: str = ''):
 
 def get_tickers():
    return Market.Market().get_tickers(instType="SPOT")["data"]
+
+
+def get_block_trades():
+   return Market.Market().get_block_ticker(instId="BTC-USDT-SWAP")

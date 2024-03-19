@@ -1,5 +1,5 @@
-
-
+import numpy
+import talib
 
 # 均线指标，如EMA、SMA、WMA等
 # 动量指标，如MACD、MOM、RSI等
@@ -14,7 +14,16 @@
 
 
 # SMA：简单移动平均线(Simple Moving Average)
-# talib.SMA() 要求数据是numpy.ndarray格式
-# talib.abstract.SMA() 要求数据是Numpy数组的字典格式
-def SMA(inputs, timeperiod, key='open'):
-    return talib.SMA(inputs, timeperiod=timeperiod, price=key)
+def SMA(inputs, timeperiod,dimensionality=float,reduction_index=0):
+    return talib.SMA(dimension_reduction(inputs, dimensionality, reduction_index), timeperiod=timeperiod)
+
+def MA(inputs, timeperiod,dimensionality=float,reduction_index=0):
+    return talib.MA(dimension_reduction(inputs, dimensionality, reduction_index), timeperiod=timeperiod)
+
+
+# 数组降维
+def dimension_reduction(inputs,dimensionality,reduction_index):
+    if dimensionality :
+        return numpy.array(inputs)[:,reduction_index]
+    return inputs
+
